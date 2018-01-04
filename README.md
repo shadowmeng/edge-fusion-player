@@ -293,11 +293,6 @@ Installing mpv dependencies
 # Install MSYS2 build dependencies and a MinGW-w64 compiler
 pacman -S git python $MINGW_PACKAGE_PREFIX-{pkg-config,gcc}
 
-
-# //Install the most important MinGW-w64 dependencies. libass and lcms2 are also
-# //pulled in as dependencies of ffmpeg.
-# //pacman -S $MINGW_PACKAGE_PREFIX-{ffmpeg,libjpeg-turbo,lua51,angleproject-git}
-
 #here do not pull ffmpeg, we must use ffmpeg-mpv
 pacman -S $MINGW_PACKAGE_PREFIX-{libjpeg-turbo,lua51,angleproject-git}
 
@@ -307,9 +302,7 @@ make && make install
 
 Building mpv
 
-Clone the latest mpv from git and install waf. Note: /usr/bin/python3 is invoked directly here, since an MSYS2 version of Python is required.
-
-git clone https://github.com/mpv-player/mpv.git && cd mpv
+git clone https://github.com/shadowmeng/edge-fusion-player.git && cd mpv
 /usr/bin/python3 bootstrap.py
 
 Finally, compile and install mpv. Binaries will be installed to /mingw64/bin or /mingw32/bin.
