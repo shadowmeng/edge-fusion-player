@@ -321,4 +321,4 @@ cd build
 we can press Ctrl key to switch between grid screen and frame screen.
 In grid screen, you can drag control point with mouth to adjust the shape of grid.
 
-!(https://github.com/shadowmeng/edge-fusion-player/blob/master/demo.png)
+![http://mpv.io/](https://github.com/shadowmeng/edge-fusion-player/blob/master/demo.png)
