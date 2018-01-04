@@ -1,0 +1,62 @@
+language: c
+
+os:
+  - linux
+  #- osx
+env:
+  matrix:
+    - LIBAV=libav-git
+    - LIBAV=ffmpeg-git
+  global:
+    # Coverity token
+    - secure: "H21mSRlMhk4BKS0xHZvCFGJxteCP0hRVUxTuNfM2Z9HBsyutuLEYMtViLO86VtM+Tqla3xXPzUdS4ozLwI72Ax/5ZUDXACROj73yW6QhFB5D6rLut12+FjqC7M33Qv2hl0xwgNBmR5dsm1ToP37+Wn+ecJQNvN8fkTXF+HVzOEw="
+    # Travis token for mpv.io
+    - secure: "nlTVLJK6kRhtXvhKCoJ3YdFGHuKaq/eHowfPw25hqRWuBOZd+HjHY5KIYjV7SxuKFDpJE4GpNcvA3Q31nsqomxpkLYgrwjg6TSazN7ZP+x85ZgV1QGFebrPfGm2n5UR5CAPAwFoeF3pZheLi4bajVzwq1fWW+x3grS188P9OZso="
+compiler:
+  - clang
+  - gcc
+
+branches:
+  only:
+    - master
+    - ci
+    - coverity_scan
+
+matrix:
+  exclude:
+    - os: osx
+      env: LIBAV=libav-git
+    - os: osx
+      env: LIBAV=ffmpeg-git
+    - os: osx
+      compiler: gcc
+    - os: linux
+      env: LIBAV=ffmpeg-git
+    - os: linux
+      compiler: clang
+
+before_install: TOOLS/travis-deps libass-stable $LIBAV
+script:
+  - ./bootstrap.py
+  - ./waf configure
+  - ./waf build
+after_failure: cat ./build/config.log
+after_script: TOOLS/travis-rebuild-website
+
+notifications:
+  email: false
+  irc:
+    channels:
+      - "irc.freenode.org#mpv-devel"
+    on_success: change
+    on_failure: always
+
+addons:
+  coverity_scan:
+    project:
+      name: "mpv-player/mpv"
+      description: "Build submitted via Travis CI"
+    notification_email: mpv-team@googlegroups.com
+    build_command_prepend: "./bootstrap.py && ./waf configure"
+    build_command:   "./waf build"
+    branch_pattern: coverity_scan
