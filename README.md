@@ -293,7 +293,7 @@ Installing mpv dependencies
 # Install MSYS2 build dependencies and a MinGW-w64 compiler
 pacman -S git python $MINGW_PACKAGE_PREFIX-{pkg-config,gcc}
 
-# here do not pull ffmpeg, we must use ffmpeg-mpv
+# Here do not pull ffmpeg, we must use ffmpeg-mpv
 pacman -S $MINGW_PACKAGE_PREFIX-{libjpeg-turbo,lua51,angleproject-git}
 
 # Building and Install ffmpeg-mpv
@@ -308,11 +308,14 @@ git clone https://github.com/shadowmeng/edge-fusion-player.git && cd mpv
 # Finally, compile and install mpv. Binaries will be installed to /mingw64/bin or /mingw32/bin.
 
 /usr/bin/python3 waf configure CC=gcc.exe --check-c-compiler=gcc --prefix=$MSYSTEM_PREFIX
+
 /usr/bin/python3 waf install
 
 # Launch
 enter build dir
+
 cd build
+
 ./mpv --vo=multidirect3d xxx.mp4
  
 we can press Ctrl key to switch between grid screen and frame screen.
