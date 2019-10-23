@@ -11,7 +11,7 @@ and use grid to adjust intersection part between projectors, and set number of o
 build steps
 
 
-Installing MSYS2
+# Installing MSYS2
 
     Download an installer from https://msys2.github.io/
 
@@ -21,12 +21,12 @@ Installing MSYS2
 
     For a 32-bit build, use mingw32.exe.
 
-Updating MSYS2
+# Updating MSYS2
 
 To prevent errors during post-install, the MSYS2 core runtime must be updated separately.
 
 
-Download yasm
+# Download yasm
 http://yasm.tortall.net/Download.html
 rename yasm.exe and copy to /bin
 
