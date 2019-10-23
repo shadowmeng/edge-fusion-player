@@ -12,38 +12,33 @@ build steps
 
 
 # Installing MSYS2
+  Download an installer from https://msys2.github.io/
 
-    Download an installer from https://msys2.github.io/
+  Both the i686 and the x86_64 version of MSYS2 can build 32-bit and 64-bit mpv binaries when running on a 64-bit version of Windows, but the x86_64 version is preferred since the larger address space makes it less prone to fork() errors.
 
-    Both the i686 and the x86_64 version of MSYS2 can build 32-bit and 64-bit mpv binaries when running on a 64-bit version of Windows, but the x86_64 version is preferred since the larger address space makes it less prone to fork() errors.
+  Start a MinGW-w64 shell (mingw64.exe). Note: This is different from the MSYS2 shell that is started from the final installation dialog. You must close that shell and open a new one.
 
-    Start a MinGW-w64 shell (mingw64.exe). Note: This is different from the MSYS2 shell that is started from the final installation dialog. You must close that shell and open a new one.
-
-    For a 32-bit build, use mingw32.exe.
-
+  For a 32-bit build, use mingw32.exe.
+  
 # Updating MSYS2
 
-To prevent errors during post-install, the MSYS2 core runtime must be updated separately.
-
-
+  To prevent errors during post-install, the MSYS2 core runtime must be updated separately.
+  
 # Download yasm
-http://yasm.tortall.net/Download.html
-rename yasm.exe and copy to /bin
+  http://yasm.tortall.net/Download.html
+  rename yasm.exe and copy to /bin
 
 # Check for core updates. If instructed, close the shell window and reopen it
 # before continuing.
-pacman -Syu
+  pacman -Syu
 
 # Update everything else
-pacman -Su
+  pacman -Su
+  pacman -S make
+  pacman -S diffutils
+  pacman -S msys2-w32api-runtime
 
-pacman -S make
-
-pacman -S diffutils
-
-pacman -S msys2-w32api-runtime
-
-Installing mpv dependencies
+# Installing mpv dependencies
 
 # Install MSYS2 build dependencies and a MinGW-w64 compiler
 pacman -S git python $MINGW_PACKAGE_PREFIX-{pkg-config,gcc}
